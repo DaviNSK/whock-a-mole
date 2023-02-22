@@ -6,7 +6,7 @@ interface StyleProps {
 }
 
 export const HammeImage = styled.img<StyleProps>`
-  position: absolute;
+  position: fixed;
   left: ${(props) => props.left}px;
   top: ${(props) => props.top}px;
   transform: translate(-35%, -35%);
