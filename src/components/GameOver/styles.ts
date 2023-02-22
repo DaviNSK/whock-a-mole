@@ -14,22 +14,21 @@ export const Title = styled.span`
   text-align: center;
 `;
 
-export const Input = styled.input`
-  width: 100%;
-  height: 40px;
-  border-bottom: 3px solid #3fc558;
-  padding-left: 10px;
-  color: #fff;
-  background: transparent;
-  margin-top: 40px;
+export const Score = styled.span`
+  color: #000;
+  font-size: 25px;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+`;
 
-  &::placeholder {
-    color: #fff;
-  }
+export const ContentFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Button = styled.button`
-  width: 100%;
+  width: 48%;
   height: 50px;
   background-color: #3fc558;
   color: #fff;

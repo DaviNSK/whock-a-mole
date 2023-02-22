@@ -9,33 +9,23 @@ interface Props {
 }
 
 const StopWatch: React.FC<Props> = ({ time, setTime, running, setRunning }) => {
-
-  const verifyTimeToStop = useMemo(() => {
+  useEffect(() => {
     if (time === -10) {
       setTime(0);
       setRunning(false);
-      return false;
     }
-
-    return true;
-  }, [time, setTime, setRunning]);
+  }, []);
 
   useEffect(() => {
-    if (!verifyTimeToStop) {
-      return;
-    }
-
-    if (!running) {
-      clearInterval(undefined);
-      return;
-    }
-
     if (running) {
       setInterval(() => {
         setTime((prevTime) => prevTime - 10);
+        console.log(running);
       }, 10);
+    } else {
+      clearInterval(undefined);
     }
-  }, [verifyTimeToStop, running, setTime]);
+  }, [running, setTime]);
 
   const formatTime = useMemo(() => {
     return (
@@ -48,7 +38,7 @@ const StopWatch: React.FC<Props> = ({ time, setTime, running, setRunning }) => {
   }, [time]);
 
   return (
-    <S.ContentTime style={{ marginTop: 20 }}>
+    <S.ContentTime>
       <S.TitleTime>Your time:</S.TitleTime>
       <S.Time>{formatTime}</S.Time>
     </S.ContentTime>

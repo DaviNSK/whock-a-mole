@@ -5,6 +5,7 @@ export const ContentTime = styled.div`
   flex-direction: column;
   padding-top: 20px;
   padding-left: 20px;
+  margin-top: 20px;
 `;
 
 export const TitleTime = styled.span`
