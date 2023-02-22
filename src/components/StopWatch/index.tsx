@@ -20,7 +20,6 @@ const StopWatch: React.FC<Props> = ({ time, setTime, running, setRunning }) => {
     if (running) {
       setInterval(() => {
         setTime((prevTime) => prevTime - 10);
-        console.log(running);
       }, 10);
     } else {
       clearInterval(undefined);

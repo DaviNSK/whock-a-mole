@@ -2114,13 +2114,6 @@
   dependencies:
     "@types/react" "^17"
 
-"@types/react-reconciler@^0.28.0", "@types/react-reconciler@^0.28.2":
-  version "0.28.2"
-  resolved "https://registry.yarnpkg.com/@types/react-reconciler/-/react-reconciler-0.28.2.tgz#f16b0e8cc4748af70ca975eaaace0d79582c71fa"
-  integrity sha512-8tu6lHzEgYPlfDf/J6GOQdIc+gs+S2yAqlby3zTsB3SP2svlqTYe5fwZNtZyfactP74ShooP2vvi1BOp9ZemWw==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-router-dom@^5.3.3":
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.3.3.tgz#e9d6b4a66fcdbd651a5f106c2656a30088cc1e83"
@@ -5000,7 +4993,7 @@ grapheme-splitter@^1.0.4:
   resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
-gsap@*, gsap@^3.11.4:
+gsap@*:
   version "3.11.4"
   resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.11.4.tgz#e6d972d3509a7431b86d81d6fc3bbeb6862e5ff1"
   integrity sha512-McHhEguHyExMMnjqKA8G+7TvxmlKQGMbjgwAilnFe1e4id7V/tFveRQ2YMZhTYu0oxHGWvbPltdVYQOu3z1SCA==
@@ -5569,13 +5562,6 @@ istanbul-reports@^3.1.3:
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
-
-its-fine@^1.0.6:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/its-fine/-/its-fine-1.0.9.tgz#f4ca0ad5bdbf896764d35f7cf24c16287b6c6d31"
-  integrity sha512-Ph+vcp1R100JOM4raXmDx/wCTi4kMkMXiFE108qGzsLdghXFPqad82UJJtqT1jwdyWYkTU6eDpDnol/ZIzW+1g==
-  dependencies:
-    "@types/react-reconciler" "^0.28.0"
 
 jake@^10.8.5:
   version "10.8.5"
@@ -7757,24 +7743,6 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-konva@^18.2.5:
-  version "18.2.5"
-  resolved "https://registry.yarnpkg.com/react-konva/-/react-konva-18.2.5.tgz#592692619c5f4a9c14726e146574ddc8bc468a7c"
-  integrity sha512-lTqJStcHnpGSXB9RlV7p5at3MpRML/TujzbuUDZRIInsLocJ/I4Nhhg3w6yJm9UV05kcwr88OY6LO+2zRyzXog==
-  dependencies:
-    "@types/react-reconciler" "^0.28.2"
-    its-fine "^1.0.6"
-    react-reconciler "~0.29.0"
-    scheduler "^0.23.0"
-
-react-reconciler@~0.29.0:
-  version "0.29.0"
-  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.29.0.tgz#ee769bd362915076753f3845822f2d1046603de7"
-  integrity sha512-wa0fGj7Zht1EYMRhKWwoo1H9GApxYLBuhoAuXN0TlltESAjDssB+Apf0T/DngVqaMyPypDmabL37vw/2aRM98Q==
-  dependencies:
-    loose-envify "^1.1.0"
-    scheduler "^0.23.0"
-
 react-redux@^8.0.5:
   version "8.0.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.0.5.tgz#e5fb8331993a019b8aaf2e167a93d10af469c7bd"
@@ -8204,13 +8172,6 @@ scheduler@^0.20.2:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-
-scheduler@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.0.tgz#ba8041afc3d30eb206a487b6b384002e4e61fdfe"
-  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
-  dependencies:
-    loose-envify "^1.1.0"
 
 schema-utils@2.7.0:
   version "2.7.0"

@@ -8,13 +8,17 @@ import Hammer from 'components/Hammer';
 // import GameOver from 'components/GameOver';
 
 const HomePage: React.FC = () => {
-  const [numberActiveMole, setNumberActiveMole] = useState<Number | null>(null);
+  const [numberActiveMole, setNumberActiveMole] = useState<Number | null>(2);
   const [openStartGame, setOpenStartGame] = useState<boolean>(true);
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(120000);
+  const [score, setScore] = useState(0);
+  const [activeHammer, setActiveHammer] = useState(false);
 
   const quantityMoles = useMemo(() => {
-    return new Array(12).fill(0);
+    return new Array(12).fill(0).map((_i, index) => ({
+      points: (20 - index) * 5,
+    }));
   }, []);
 
   useEffect(() => {
@@ -37,18 +41,22 @@ const HomePage: React.FC = () => {
     setTime(120000);
   }, []);
 
-  useEffect(() => {
-    if (numberActiveMole === null) return;
-  }, [numberActiveMole]);
+  const handleClickHammer = useCallback(
+    (index: number, points) => {
+      setActiveHammer(true);
+      if (numberActiveMole === null) return;
+
+      setScore(score + points);
+    },
+    [score, numberActiveMole],
+  );
 
   return (
     <S.HomeWrapper>
-      {running && <Hammer />}
-
       <S.Background src={Background} />
       <S.ContentInformation>
         <S.TitleInformation>Score:</S.TitleInformation>
-        <S.Score>122</S.Score>
+        <S.Score>{score}</S.Score>
       </S.ContentInformation>
 
       <StopWatch
@@ -59,8 +67,9 @@ const HomePage: React.FC = () => {
       />
 
       <S.ListMoles>
-        {quantityMoles.map((_item, index) => (
-          <S.MoleItem className={`.mole-${index}`} key={index}>
+        {quantityMoles.map((item, index) => (
+          <S.MoleItem className={`mole-${index}`} key={index}>
+            <S.FakeMole onClick={() => handleClickHammer(index, item.points)} />
             <MoleAndHole activeMole={numberActiveMole === index} />
           </S.MoleItem>
         ))}
@@ -69,6 +78,10 @@ const HomePage: React.FC = () => {
       {openStartGame && <StartGame handleStartGame={handleStartGame} />}
 
       {/* {time === 0 && <GameOver />} */}
+
+      {running && (
+        <Hammer activeHammer={activeHammer} setActiveHammer={setActiveHammer} />
+      )}
     </S.HomeWrapper>
   );
 };

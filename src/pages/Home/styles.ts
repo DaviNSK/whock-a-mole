@@ -28,9 +28,21 @@ export const ListMoles = styled.div`
 export const MoleItem = styled.div`
   width: 25%;
   height: 200px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const FakeMole = styled.div`
+  width: 200px;
+  height: 150px;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 `;
 
 export const ContentInformation = styled.div`
