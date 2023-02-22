@@ -23,7 +23,7 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #222;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Press Start 2P', sans-serif;
   }
   
 
@@ -61,10 +61,14 @@ export default createGlobalStyle`
     line-height: 1.6;
   }
 
+  button,
   input ,
   select {
     appearance: none;
+    border: none;
+    font-family: 'Press Start 2P', sans-serif;
   }
+  
 
   ul {
     list-style: none;
