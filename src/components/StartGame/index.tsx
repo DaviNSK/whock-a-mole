@@ -3,14 +3,18 @@ import React from 'react';
 
 import * as S from './styles';
 
-const StartGame: React.FC = () => {
+interface Props {
+  handleStartGame: () => void;
+}
+
+const StartGame: React.FC<Props> = ({ handleStartGame }) => {
   return (
     <Modal>
       <S.Container>
         <S.Title>Start Game</S.Title>
 
         <S.Input placeholder="Your NickName" />
-        <S.Button>Start</S.Button>
+        <S.Button onClick={handleStartGame}>Start</S.Button>
       </S.Container>
     </Modal>
   );

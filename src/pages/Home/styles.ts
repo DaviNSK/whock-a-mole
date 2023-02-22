@@ -21,8 +21,8 @@ export const ListMoles = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  padding-top: 100px;
-`
+  padding-top: 40px;
+`;
 
 export const MoleItem = styled.div`
   width: 25%;
@@ -30,4 +30,28 @@ export const MoleItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
+
+export const ContentInformation = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-left: 20px;
+`;
+
+export const TitleInformation = styled.span`
+  color: #f00;
+  font-size: 20px;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  margin-bottom: 10px;
+`;
+
+export const Score = styled.span`
+  color: #000;
+  font-size: 25px;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+`;
+
+export const Time = styled(Score)``;
