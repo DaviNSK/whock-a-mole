@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface ButtonProps {
+  disabled: boolean;
+}
+
 export const Container = styled.div`
   width: 100%;
   padding-top: 20px;
@@ -28,7 +32,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   width: 100%;
   height: 50px;
   background-color: #3fc558;
@@ -36,8 +40,9 @@ export const Button = styled.button`
   border: none;
   margin-top: 40px;
   cursor: pointer;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 
   &:hover {
-    opacity: 0.8;
+    opacity: ${(props) => (props.disabled ? 0.5 : 0.8)};
   }
 `;

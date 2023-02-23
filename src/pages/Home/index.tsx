@@ -77,7 +77,7 @@ const HomePage: React.FC = () => {
   const handleStartGame = useCallback((nickname: string) => {
     dispatch(appSlice.actions.setCurrentPlayerNickname({ nickname }));
     dispatch(fetchList());
-    
+
     setOpenStartGame(false);
     setTime(GAME_TIME);
     setScore(0);
@@ -158,4 +158,4 @@ export default HomePage;
 // Utils
 //
 
-const GAME_TIME = 10000;
+const GAME_TIME = 120000;

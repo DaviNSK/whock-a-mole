@@ -14,7 +14,6 @@ const StartGame: React.FC<Props> = ({ handleStartGame }) => {
     (state: RootState) => state.app.currentPlayerNickname,
   );
   const [nickname, setNickname] = useState(currentNickame);
-  
 
   return (
     <Modal>
@@ -26,7 +25,7 @@ const StartGame: React.FC<Props> = ({ handleStartGame }) => {
           onChange={(event) => setNickname(event.target.value)}
           placeholder="Your NickName"
         />
-        <S.Button onClick={() => handleStartGame(nickname)}>Start</S.Button>
+        <S.Button disabled={!nickname} onClick={() => handleStartGame(nickname)}>Start</S.Button>
       </S.Container>
     </Modal>
   );
