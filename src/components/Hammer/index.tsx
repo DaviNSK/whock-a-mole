@@ -37,9 +37,8 @@ const Hammer: React.FC<Props> = ({ activeHammer, setActiveHammer }) => {
   return (
     <S.HammeImage
       onClick={() => setActiveHammer(true)}
+      style={{ left: mousePos.x, top: mousePos.y }}
       className={`hammer ${activeHammer ? 'active' : ''}`}
-      left={mousePos.x}
-      top={mousePos.y}
       src={HammerImage}
     />
   );

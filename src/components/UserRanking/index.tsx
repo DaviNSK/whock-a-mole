@@ -11,13 +11,17 @@ interface Props {
 
 const UserRanking: React.FC<Props> = ({ dataList }) => {
   const sortedDataList = useMemo(() => {
-    const newList = dataList.slice(0, MAX_RANKING);
+    const newList = [...dataList];
 
-    return newList.sort((a, b) => b.score - a.score);
+    return newList.sort((a, b) => b.score - a.score).slice(0, MAX_RANKING);
   }, [dataList]);
 
   const truncateNickName = useCallback((nickname: string) => {
-    return nickname.substring(0, 8) + '...';
+    if (nickname.length > 8) {
+      return `${nickname.substring(0, 8)}...`;
+    }
+
+    return nickname.substring(0, 8);
   }, []);
 
   return (

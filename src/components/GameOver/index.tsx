@@ -1,10 +1,12 @@
 import Modal from 'components/Modal';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/rootReducer';
 
 import * as S from './styles';
 
 interface Props {
-  handleStartGame: () => void;
+  handleStartGame: (nickname: string) => void;
   setOpenStartGame: React.Dispatch<React.SetStateAction<boolean>>;
   score: number;
 }
@@ -14,6 +16,10 @@ const GameOver: React.FC<Props> = ({
   handleStartGame,
   setOpenStartGame,
 }) => {
+  const nickname = useSelector(
+    (state: RootState) => state.app.currentPlayerNickname,
+  );
+
   return (
     <Modal>
       <S.Container>
@@ -22,7 +28,7 @@ const GameOver: React.FC<Props> = ({
         <S.Score>Score: {score}</S.Score>
 
         <S.ContentFlex>
-          <S.Button onClick={handleStartGame}>Restart</S.Button>
+          <S.Button onClick={() => handleStartGame(nickname)}>Restart</S.Button>
           <S.Button onClick={() => setOpenStartGame(true)}>Exit</S.Button>
         </S.ContentFlex>
       </S.Container>

@@ -1,5 +1,7 @@
 import Modal from 'components/Modal';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/rootReducer';
 
 import * as S from './styles';
 
@@ -8,7 +10,11 @@ interface Props {
 }
 
 const StartGame: React.FC<Props> = ({ handleStartGame }) => {
-  const [nickname, setNickname] = useState('');
+  const currentNickame = useSelector(
+    (state: RootState) => state.app.currentPlayerNickname,
+  );
+  const [nickname, setNickname] = useState(currentNickame);
+  
 
   return (
     <Modal>
@@ -16,6 +22,7 @@ const StartGame: React.FC<Props> = ({ handleStartGame }) => {
         <S.Title>Start Game</S.Title>
 
         <S.Input
+          value={nickname}
           onChange={(event) => setNickname(event.target.value)}
           placeholder="Your NickName"
         />

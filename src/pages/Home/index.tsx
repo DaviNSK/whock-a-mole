@@ -35,7 +35,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchList());
-  }, []);
+  }, [dispatch]);
 
   const quantityMoles = useMemo(
     () =>
@@ -71,16 +71,17 @@ const HomePage: React.FC = () => {
       return;
     }
 
-    document.body.style.cursor = 'default';
+    document.body.style.cursor = 'default'; 
   }, [runningGame]);
 
   const handleStartGame = useCallback((nickname: string) => {
     dispatch(appSlice.actions.setCurrentPlayerNickname({ nickname }));
-
+    dispatch(fetchList());
+    
     setOpenStartGame(false);
     setTime(GAME_TIME);
     setScore(0);
-  }, []);
+  }, [dispatch]);
 
   const handleClickHammer = useCallback(
     (index: number, points: number) => {
@@ -102,10 +103,10 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     if (time !== 0) return;
-
+   
     dispatch(sendResult({ score }));
     dispatch(fetchList());
-  }, [runningGame]);
+  }, [dispatch, runningGame, time, score]);
 
   return (
     <S.HomeWrapper>

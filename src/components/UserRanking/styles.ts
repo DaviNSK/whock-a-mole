@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 290px;
+  width: 250px;
   background: transparent;
   border: 3px solid #f00;
   position: fixed;
@@ -10,7 +10,8 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.span`
-  font-size: 20px;
+  font-size: 16px;
+  margin-top: 5px;
   font-weight: bold;
   color: #000;
   display: flex;
@@ -34,7 +35,7 @@ export const ListItem = styled.li`
 `;
 
 export const ListItemText = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   color: #000;
 `;
 
