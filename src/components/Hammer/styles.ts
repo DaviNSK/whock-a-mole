@@ -9,10 +9,10 @@ export const HammeImage = styled.img<StyleProps>`
   position: fixed;
   left: ${(props) => props.left}px;
   top: ${(props) => props.top}px;
-  transform: translate(-35%, -35%);
+  transform: translate(-25%, -60%);
   transition: transform .1s;
 
   &.active {
-    transform: translate(-35%, -35%) rotate(-45deg);
+    transform: translate(-25%, -60%) rotate(-45deg);
   }
 `;

@@ -2,6 +2,7 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import * as S from './styles';
@@ -11,58 +12,75 @@ import StartGame from 'components/StartGame';
 import StopWatch from 'components/StopWatch';
 import Hammer from 'components/Hammer';
 import Sound from '../../assets/sounds/sound-hit-mole.mp3';
-// import GameOver from 'components/GameOver';
+import GameOver from 'components/GameOver';
 
 const HomePage: React.FC = () => {
-  const [numberActiveMole, setNumberActiveMole] = useState<Number | null>(null);
+  const [activeMoleIndex, setActiveMoleIndex] = useState<Number | null>(null);
   const [openStartGame, setOpenStartGame] = useState<boolean>(true);
-  const [running, setRunning] = useState(false);
-  const [time, setTime] = useState(5000);
+  const [time, setTime] = useState(GAME_TIME);
   const [score, setScore] = useState(0);
   const [activeHammer, setActiveHammer] = useState(false);
   const [hitMole, setHitMole] = useState<Number | null>(null);
+  const moleIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const quantityMoles = useMemo(() => {
-    return new Array(12).fill(0).map((_i, index) => ({
-      points: (20 - index) * 5,
-    }));
-  }, []);
+  const quantityMoles = useMemo(
+    () =>
+      new Array(12).fill(0).map((_i, index) => ({
+        points: (20 - index) * 5,
+      })),
+    [],
+  );
+
+  const runningGame = useMemo(
+    () => time > 0 && !openStartGame,
+    [time, openStartGame],
+  );
 
   useEffect(() => {
-    if (running) return;
+    if (moleIntervalRef.current && !runningGame) {
+      clearInterval(moleIntervalRef.current);
+      moleIntervalRef.current = null;
 
-    setOpenStartGame(true);
-  }, [running]);
+      return;
+    }
 
-  useEffect(() => {
-    if (!running) return;
+    if (!runningGame) return;
 
-    setInterval(() => {
-      setNumberActiveMole(Math.floor(Math.random() * 12));
+    moleIntervalRef.current = setInterval(() => {
+      setActiveMoleIndex(Math.floor(Math.random() * 12));
     }, 1000);
-  }, [running]);
+  }, [runningGame]);
+
+  useEffect(() => {
+    if (runningGame) {
+      document.body.style.cursor = 'none';
+      return;
+    }
+
+    document.body.style.cursor = 'default';
+  }, [runningGame]);
 
   const handleStartGame = useCallback(() => {
-    setRunning(true);
     setOpenStartGame(false);
-    setTime(5000);
+    setTime(GAME_TIME);
   }, []);
 
   const handleClickHammer = useCallback(
-    (index: number, points) => {
+    (index: number, points: number) => {
       setActiveHammer(true);
-      if (numberActiveMole !== index) return;
+
+      if (activeMoleIndex !== index) return;
 
       setScore(score + points);
       setHitMole(index);
       new Audio(Sound).play();
-      setNumberActiveMole(null);
+      setActiveMoleIndex(null);
 
       setTimeout(() => {
         setHitMole(null);
       }, 500);
     },
-    [score, numberActiveMole],
+    [score, activeMoleIndex],
   );
 
   return (
@@ -73,12 +91,7 @@ const HomePage: React.FC = () => {
         <S.Score>{score}</S.Score>
       </S.ContentInformation>
 
-      <StopWatch
-        time={time}
-        setTime={setTime}
-        setRunning={setRunning}
-        running={running}
-      />
+      <StopWatch time={time} setTime={setTime} running={runningGame} />
 
       <S.ListMoles>
         {quantityMoles.map(({ points }, index) => (
@@ -87,7 +100,7 @@ const HomePage: React.FC = () => {
             <MoleAndHole
               points={points}
               hitMole={hitMole === index}
-              activeMole={numberActiveMole === index}
+              activeMole={activeMoleIndex === index}
             />
           </S.MoleItem>
         ))}
@@ -95,9 +108,9 @@ const HomePage: React.FC = () => {
 
       {openStartGame && <StartGame handleStartGame={handleStartGame} />}
 
-      {/* {time === 0 && <GameOver />} */}
+      {time === 0 && <GameOver score={score} />}
 
-      {running && (
+      {runningGame && (
         <Hammer activeHammer={activeHammer} setActiveHammer={setActiveHammer} />
       )}
     </S.HomeWrapper>
@@ -105,3 +118,9 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+//
+// Utils
+//
+
+const GAME_TIME = 10000;

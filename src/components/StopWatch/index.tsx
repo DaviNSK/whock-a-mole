@@ -1,32 +1,33 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import * as S from './styles';
 
 interface Props {
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
   running: boolean;
-  setRunning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const StopWatch: React.FC<Props> = ({ time, setTime, running, setRunning }) => {
-  useEffect(() => {
-    if (time === -10) {
-      setTime(0);
-      setRunning(false);
-    }
-  }, []);
+const StopWatch: React.FC<Props> = ({ time, setTime, running }) => {
+  const timeIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (running) {
-      setInterval(() => {
-        setTime((prevTime) => prevTime - 10);
-      }, 10);
-    } else {
-      clearInterval(undefined);
+    if (timeIntervalRef.current && !running) {
+      clearInterval(timeIntervalRef.current);
+      timeIntervalRef.current = null;
+
+      return;
     }
+
+    if (!running) return;
+
+    timeIntervalRef.current = setInterval(() => {
+      setTime((prevTime) => prevTime - 10);
+    }, 10);
   }, [running, setTime]);
 
   const formatTime = useMemo(() => {
+    if (time < 0) return '00:00:00';
+
     return (
       ('0' + Math.floor((time / 60000) % 60)).slice(-2) +
       ':' +

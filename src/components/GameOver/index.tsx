@@ -3,13 +3,17 @@ import React from 'react';
 
 import * as S from './styles';
 
-const GameOver: React.FC = () => {
+interface Props {
+  score: number;
+}
+
+const GameOver: React.FC<Props> = ({ score }) => {
   return (
     <Modal>
       <S.Container>
         <S.Title>Game Over</S.Title>
 
-        <S.Score>Score: 2181</S.Score>
+        <S.Score>Score: {score}</S.Score>
 
         <S.ContentFlex>
           <S.Button>Restart</S.Button>

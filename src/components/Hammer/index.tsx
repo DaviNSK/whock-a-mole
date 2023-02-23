@@ -15,8 +15,6 @@ const Hammer: React.FC<Props> = ({ activeHammer, setActiveHammer }) => {
   });
 
   useEffect(() => {
-    document.body.style.cursor = 'none';
-
     const handleMouseMove = (event: { clientX: number; clientY: number }) => {
       setMousePos({ x: event.clientX, y: event.clientY });
     };
@@ -38,6 +36,7 @@ const Hammer: React.FC<Props> = ({ activeHammer, setActiveHammer }) => {
 
   return (
     <S.HammeImage
+      onClick={() => setActiveHammer(true)}
       className={`hammer ${activeHammer ? 'active' : ''}`}
       left={mousePos.x}
       top={mousePos.y}

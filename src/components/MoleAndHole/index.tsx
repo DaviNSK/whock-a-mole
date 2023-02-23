@@ -18,12 +18,12 @@ const MoleAndHole: React.FC<Props> = ({ points, activeMole, hitMole }) => {
     }
 
     return activeMole;
-  }, [hitMole, activeMole])
+  }, [hitMole, activeMole]);
 
   return (
     <>
       <S.Points hitMole={hitMole}>{points}</S.Points>
-      <S.Image active={activeMole} src={verifyActiveMole ? Mole : Hole} />;
+      <S.Image active={activeMole} src={verifyActiveMole ? Mole : Hole} />
     </>
   );
 };

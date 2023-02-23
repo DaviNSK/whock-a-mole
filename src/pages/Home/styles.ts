@@ -36,10 +36,10 @@ export const MoleItem = styled.div`
 
 export const FakeMole = styled.div`
   width: 200px;
-  height: 150px;
+  height: 170px;
   z-index: 5;
   position: absolute;
-  top: 0;
+  top: -20px;
   left: 0;
   right: 0;
   margin: auto;

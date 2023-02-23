@@ -6,33 +6,38 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.span`
-  color: #fff;
-  font-size: 20px;
+  color: #000;
+  font-size: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
 `;
 
 export const Score = styled.span`
-  color: #000;
+  color: #3fc558;
   font-size: 25px;
   text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
     -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  margin-top: 35px;
+  display: flex;
 `;
 
 export const ContentFlex = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
 `;
 
 export const Button = styled.button`
   width: 48%;
   height: 50px;
-  background-color: #3fc558;
-  color: #fff;
-  border: none;
+  background-color: #fff;
+  border: 4px solid #3fc558;
+  color: #3fc558;
   margin-top: 40px;
   cursor: pointer;
 
