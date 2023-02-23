@@ -13,6 +13,11 @@ import StopWatch from 'components/StopWatch';
 import Hammer from 'components/Hammer';
 import Sound from '../../assets/sounds/sound-hit-mole.mp3';
 import GameOver from 'components/GameOver';
+import UserRanking from 'components/UserRanking';
+import { useSelector } from 'react-redux';
+import { appSlice, fetchList, sendResult } from 'store/slices/appSlice';
+import { RootState } from 'store/rootReducer';
+import { useAppDispatch } from 'store/store';
 
 const HomePage: React.FC = () => {
   const [activeMoleIndex, setActiveMoleIndex] = useState<Number | null>(null);
@@ -22,6 +27,15 @@ const HomePage: React.FC = () => {
   const [activeHammer, setActiveHammer] = useState(false);
   const [hitMole, setHitMole] = useState<Number | null>(null);
   const moleIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const dispatch = useAppDispatch();
+  const ranking = useSelector((state: RootState) => state.app.ranking.data);
+  const nickname = useSelector(
+    (state: RootState) => state.app.currentPlayerNickname,
+  );
+
+  useEffect(() => {
+    dispatch(fetchList());
+  }, []);
 
   const quantityMoles = useMemo(
     () =>
@@ -60,9 +74,12 @@ const HomePage: React.FC = () => {
     document.body.style.cursor = 'default';
   }, [runningGame]);
 
-  const handleStartGame = useCallback(() => {
+  const handleStartGame = useCallback((nickname: string) => {
+    dispatch(appSlice.actions.setCurrentPlayerNickname({ nickname }));
+
     setOpenStartGame(false);
     setTime(GAME_TIME);
+    setScore(0);
   }, []);
 
   const handleClickHammer = useCallback(
@@ -83,6 +100,13 @@ const HomePage: React.FC = () => {
     [score, activeMoleIndex],
   );
 
+  useEffect(() => {
+    if (time !== 0) return;
+
+    dispatch(sendResult({ score }));
+    dispatch(fetchList());
+  }, [runningGame]);
+
   return (
     <S.HomeWrapper>
       <S.Background src={Background} />
@@ -95,7 +119,7 @@ const HomePage: React.FC = () => {
 
       <S.ListMoles>
         {quantityMoles.map(({ points }, index) => (
-          <S.MoleItem className={`mole-${index}`} key={index}>
+          <S.MoleItem key={index}>
             <S.FakeMole onClick={() => handleClickHammer(index, points)} />
             <MoleAndHole
               points={points}
@@ -106,9 +130,19 @@ const HomePage: React.FC = () => {
         ))}
       </S.ListMoles>
 
-      {openStartGame && <StartGame handleStartGame={handleStartGame} />}
+      <UserRanking dataList={ranking} />
 
-      {time === 0 && <GameOver score={score} />}
+      {openStartGame && (
+        <StartGame handleStartGame={(nickname) => handleStartGame(nickname)} />
+      )}
+
+      {time === 0 && !openStartGame && (
+        <GameOver
+          handleStartGame={() => handleStartGame(nickname)}
+          setOpenStartGame={setOpenStartGame}
+          score={score}
+        />
+      )}
 
       {runningGame && (
         <Hammer activeHammer={activeHammer} setActiveHammer={setActiveHammer} />
