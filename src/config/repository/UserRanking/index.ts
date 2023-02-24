@@ -1,4 +1,4 @@
-import api from '../../api-service';
+import api from 'config/api-service';
 import { UserRanking } from './types';
 
 export const fetchRankingList = () => {

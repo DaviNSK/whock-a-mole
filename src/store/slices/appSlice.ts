@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   fetchRankingList,
   sendResultGame,
-} from '../../config/repository/UserRanking';
+} from 'config/repository/UserRanking';
 
 export type AppState = {
   ranking: { data: { nickname: string; score: number }[]; loading: boolean };

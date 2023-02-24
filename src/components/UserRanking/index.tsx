@@ -31,7 +31,7 @@ const UserRanking: React.FC<Props> = ({ dataList }) => {
       <S.List>
         {sortedDataList.map((item, index) => (
           <S.ListItem key={index}>
-            <S.ListItemText>
+            <S.ListItemText data-testid="ranking">
               #{index + 1} {truncateNickName(item.nickname)}
             </S.ListItemText>
             <S.ListItemScore>{item.score}</S.ListItemScore>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import HammerImage from '../../assets/images/WAM_Hammer.png';
+import HammerImage from 'assets/images/WAM_Hammer.png';
 
 import * as S from './styles';
 
@@ -39,6 +39,7 @@ const Hammer: React.FC<Props> = ({ activeHammer, setActiveHammer }) => {
       onClick={() => setActiveHammer(true)}
       style={{ left: mousePos.x, top: mousePos.y }}
       className={`hammer ${activeHammer ? 'active' : ''}`}
+      alt="hammer image"
       src={HammerImage}
     />
   );

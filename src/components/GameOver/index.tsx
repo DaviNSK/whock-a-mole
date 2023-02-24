@@ -22,7 +22,7 @@ const GameOver: React.FC<Props> = ({
 
   return (
     <Modal>
-      <S.Container>
+      <S.Container data-testid="game-over-modal">
         <S.Title>Game Over</S.Title>
 
         <S.Score>Score: {score}</S.Score>

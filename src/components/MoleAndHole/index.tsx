@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
-import Hole from '../../assets/images/WAM_Hole.png';
-import Mole from '../../assets/images/WAM_Mole.png';
+import Hole from 'assets/images/WAM_Hole.png';
+import Mole from 'assets/images/WAM_Mole.png';
 
 import * as S from './styles';
 
@@ -23,7 +23,11 @@ const MoleAndHole: React.FC<Props> = ({ points, activeMole, hitMole }) => {
   return (
     <>
       <S.Points hitMole={hitMole}>{points}</S.Points>
-      <S.Image active={activeMole} src={verifyActiveMole ? Mole : Hole} />
+      <S.Image
+        active={activeMole}
+        src={verifyActiveMole ? Mole : Hole}
+        alt={verifyActiveMole ? 'mole image' : 'hole image'}
+      />
     </>
   );
 };

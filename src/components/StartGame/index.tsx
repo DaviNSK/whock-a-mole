@@ -24,8 +24,13 @@ const StartGame: React.FC<Props> = ({ handleStartGame }) => {
           value={nickname}
           onChange={(event) => setNickname(event.target.value)}
           placeholder="Your NickName"
+          data-testid="input-nickname"
         />
-        <S.Button disabled={!nickname} onClick={() => handleStartGame(nickname)}>Start</S.Button>
+        <S.Button
+          disabled={!nickname}
+          onClick={() => handleStartGame(nickname)}>
+          Start
+        </S.Button>
       </S.Container>
     </Modal>
   );

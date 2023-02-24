@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef } from 'react';
+import parseTime from 'utils/parseTime';
 import * as S from './styles';
 
 interface Props {
@@ -20,6 +21,8 @@ const StopWatch: React.FC<Props> = ({ time, setTime, running }) => {
 
     if (!running) return;
 
+    setTime((prevTime) => prevTime - 10);
+
     timeIntervalRef.current = setInterval(() => {
       setTime((prevTime) => prevTime - 10);
     }, 10);
@@ -28,17 +31,11 @@ const StopWatch: React.FC<Props> = ({ time, setTime, running }) => {
   const formatTime = useMemo(() => {
     if (time < 0) return '00:00:00';
 
-    return (
-      ('0' + Math.floor((time / 60000) % 60)).slice(-2) +
-      ':' +
-      ('0' + Math.floor((time / 1000) % 60)).slice(-2) +
-      ':' +
-      ('0' + ((time / 10) % 100)).slice(-2)
-    );
+    return parseTime(time);
   }, [time]);
 
   return (
-    <S.ContentTime>
+    <S.ContentTime data-testid="stopwatch">
       <S.TitleTime>Your time:</S.TitleTime>
       <S.Time>{formatTime}</S.Time>
     </S.ContentTime>

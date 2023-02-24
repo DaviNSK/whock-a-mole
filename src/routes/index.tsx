@@ -1,16 +1,16 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Navigate, Route, Routes as Switch } from 'react-router-dom';
 
 import HomePage from 'pages/Home';
 
-const Routess: React.FC = () => {
+const Routes: React.FC = () => {
   return (
     <Switch>
-      <Route exact component={HomePage} path="/" />
+      <Route path="*" element={<Navigate to={`/`} replace />} />
 
-      <Redirect to="/" />
+      <Route element={<HomePage />} path="/" />
     </Switch>
   );
 };
 
-export default Routess;
+export default Routes;

@@ -6,12 +6,12 @@ import React, {
   useState,
 } from 'react';
 import * as S from './styles';
-import Background from '../../assets/images/WAM_bg.jpg';
+import Background from 'assets/images/WAM_bg.jpg';
 import MoleAndHole from 'components/MoleAndHole';
 import StartGame from 'components/StartGame';
 import StopWatch from 'components/StopWatch';
 import Hammer from 'components/Hammer';
-import Sound from '../../assets/sounds/sound-hit-mole.mp3';
+import Sound from 'assets/sounds/sound-hit-mole.mp3';
 import GameOver from 'components/GameOver';
 import UserRanking from 'components/UserRanking';
 import { useSelector } from 'react-redux';
@@ -32,10 +32,6 @@ const HomePage: React.FC = () => {
   const nickname = useSelector(
     (state: RootState) => state.app.currentPlayerNickname,
   );
-
-  useEffect(() => {
-    dispatch(fetchList());
-  }, [dispatch]);
 
   const quantityMoles = useMemo(
     () =>
@@ -120,7 +116,7 @@ const HomePage: React.FC = () => {
 
       <S.ListMoles>
         {quantityMoles.map(({ points }, index) => (
-          <S.MoleItem key={index}>
+          <S.MoleItem data-testid="mole-and-hole" key={index}>
             <S.FakeMole onClick={() => handleClickHammer(index, points)} />
             <MoleAndHole
               points={points}
