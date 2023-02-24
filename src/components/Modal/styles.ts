@@ -14,8 +14,6 @@ export const Modal = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  width: 400px;
-  height: 270px;
   background-color: #d98447;
   padding: 20px;
 `;

@@ -13,7 +13,6 @@ import CountDown from 'components/CountDown';
 import Hammer from 'components/Hammer';
 import Sound from 'assets/sounds/sound-hit-mole.mp3';
 import GameOver from 'components/GameOver';
-import UserRanking from 'components/UserRanking';
 import { useSelector } from 'react-redux';
 import { appSlice, fetchList, sendResult } from 'store/slices/appSlice';
 import { RootState } from 'store/rootReducer';
@@ -28,7 +27,6 @@ const HomePage: React.FC = () => {
   const [hitMole, setHitMole] = useState<Number | null>(null);
   const moleIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const dispatch = useAppDispatch();
-  const ranking = useSelector((state: RootState) => state.app.ranking.data);
   const nickname = useSelector(
     (state: RootState) => state.app.currentPlayerNickname,
   );
@@ -67,17 +65,19 @@ const HomePage: React.FC = () => {
       return;
     }
 
-    document.body.style.cursor = 'default'; 
+    document.body.style.cursor = 'default';
   }, [runningGame]);
 
-  const handleStartGame = useCallback((nickname: string) => {
-    dispatch(appSlice.actions.setCurrentPlayerNickname({ nickname }));
-    dispatch(fetchList());
+  const handleStartGame = useCallback(
+    (nickname: string) => {
+      dispatch(appSlice.actions.setCurrentPlayerNickname({ nickname }));
 
-    setOpenStartGame(false);
-    setTime(GAME_TIME);
-    setScore(0);
-  }, [dispatch]);
+      setOpenStartGame(false);
+      setTime(GAME_TIME);
+      setScore(0);
+    },
+    [dispatch],
+  );
 
   const handleClickHammer = useCallback(
     (index: number, points: number) => {
@@ -99,9 +99,12 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     if (time !== 0) return;
-   
+
     dispatch(sendResult({ score }));
-    dispatch(fetchList());
+
+    setTimeout(() => {
+      dispatch(fetchList());
+    }, 1000);
   }, [dispatch, runningGame, time, score]);
 
   return (
@@ -126,8 +129,6 @@ const HomePage: React.FC = () => {
           </S.MoleItem>
         ))}
       </S.ListMoles>
-
-      <UserRanking dataList={ranking} />
 
       {openStartGame && (
         <StartGame handleStartGame={(nickname) => handleStartGame(nickname)} />
@@ -154,4 +155,4 @@ export default HomePage;
 // Utils
 //
 
-const GAME_TIME = 120000;
+const GAME_TIME = 15000;

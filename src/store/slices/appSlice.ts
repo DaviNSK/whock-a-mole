@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 import {
   fetchRankingList,
   sendResultGame,
@@ -32,7 +31,6 @@ export const sendResult = createAsyncThunk(
 
     try {
       const response: AxiosResponse<any> = await sendResultGame({
-        id: uuidv4(),
         nickname: app.currentPlayerNickname,
         score,
       });

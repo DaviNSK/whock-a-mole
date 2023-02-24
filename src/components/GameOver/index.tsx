@@ -1,4 +1,5 @@
 import Modal from 'components/Modal';
+import UserRanking from 'components/UserRanking';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
@@ -16,6 +17,7 @@ const GameOver: React.FC<Props> = ({
   handleStartGame,
   setOpenStartGame,
 }) => {
+  const ranking = useSelector((state: RootState) => state.app.ranking.data);
   const nickname = useSelector(
     (state: RootState) => state.app.currentPlayerNickname,
   );
@@ -26,6 +28,8 @@ const GameOver: React.FC<Props> = ({
         <S.Title>Game Over</S.Title>
 
         <S.Score>Score: {score}</S.Score>
+
+        <UserRanking dataList={ranking} />
 
         <S.ContentFlex>
           <S.Button onClick={() => handleStartGame(nickname)}>Restart</S.Button>

@@ -5,7 +5,8 @@ interface ButtonProps {
 }
 
 export const Container = styled.div`
-  width: 100%;
+  width: 400px;
+  height: 270px;
   padding-top: 20px;
 `;
 

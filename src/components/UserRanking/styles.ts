@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 250px;
+  width: 300px;
   background: transparent;
-  border: 3px solid #f00;
-  position: fixed;
-  right: 0;
-  top: 0;
+  border: 3px solid #fff;
+  margin-top: 20px;
+  padding: 8px;
 `;
 
 export const Title = styled.span`
@@ -18,6 +17,8 @@ export const Title = styled.span`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
 `;
 
 export const List = styled.ul`
@@ -41,7 +42,7 @@ export const ListItemText = styled.span`
 
 export const ListItemScore = styled.span`
   font-size: 14px;
-  color: #f00;
+  color: #3fc558;
   text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
     -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
 `;
