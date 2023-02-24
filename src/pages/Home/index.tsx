@@ -155,4 +155,4 @@ export default HomePage;
 // Utils
 //
 
-const GAME_TIME = 15000;
+const GAME_TIME = 120000;
