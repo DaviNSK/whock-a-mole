@@ -9,7 +9,7 @@ import * as S from './styles';
 import Background from 'assets/images/WAM_bg.jpg';
 import MoleAndHole from 'components/MoleAndHole';
 import StartGame from 'components/StartGame';
-import StopWatch from 'components/StopWatch';
+import CountDown from 'components/CountDown';
 import Hammer from 'components/Hammer';
 import Sound from 'assets/sounds/sound-hit-mole.mp3';
 import GameOver from 'components/GameOver';
@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
         <S.Score>{score}</S.Score>
       </S.ContentInformation>
 
-      <StopWatch time={time} setTime={setTime} running={runningGame} />
+      <CountDown time={time} setTime={setTime} running={runningGame} />
 
       <S.ListMoles>
         {quantityMoles.map(({ points }, index) => (

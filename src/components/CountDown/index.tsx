@@ -8,7 +8,7 @@ interface Props {
   running: boolean;
 }
 
-const StopWatch: React.FC<Props> = ({ time, setTime, running }) => {
+const CountDown: React.FC<Props> = ({ time, setTime, running }) => {
   const timeIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -35,11 +35,11 @@ const StopWatch: React.FC<Props> = ({ time, setTime, running }) => {
   }, [time]);
 
   return (
-    <S.ContentTime data-testid="stopwatch">
+    <S.ContentTime data-testid="countdown">
       <S.TitleTime>Your time:</S.TitleTime>
       <S.Time>{formatTime}</S.Time>
     </S.ContentTime>
   );
 };
 
-export default StopWatch;
+export default CountDown;

@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
 import parseTime from 'utils/parseTime';
 import sleep from 'utils/sleep';
-import StopWatch from './';
+import CountDown from '.';
 
-describe('StopWatch component', () => {
+describe('CountDown component', () => {
   let time = 120000;
   const setTime = jest.fn();
   let running = true;
@@ -14,14 +14,14 @@ describe('StopWatch component', () => {
 
   test('renders the component', () => {
     const { getByTestId } = render(
-      <StopWatch time={time} setTime={setTime} running={running} />,
+      <CountDown time={time} setTime={setTime} running={running} />,
     );
 
-    expect(getByTestId('stopwatch')).toBeInTheDocument();
+    expect(getByTestId('countdown')).toBeInTheDocument();
   });
 
   test('updates the time every 10 milliseconds when running', async () => {
-    render(<StopWatch time={time} setTime={setTime} running={running} />);
+    render(<CountDown time={time} setTime={setTime} running={running} />);
 
     expect(setTime).toHaveBeenCalledTimes(1);
 
@@ -33,7 +33,7 @@ describe('StopWatch component', () => {
   test('does not update the time when not running', () => {
     jest.useFakeTimers();
 
-    render(<StopWatch time={time} setTime={setTime} running={false} />);
+    render(<CountDown time={time} setTime={setTime} running={false} />);
 
     expect(setTime).not.toHaveBeenCalled();
 
@@ -48,10 +48,10 @@ describe('StopWatch component', () => {
     time = 360100;
 
     const { getByTestId } = render(
-      <StopWatch time={time} setTime={setTime} running={running} />,
+      <CountDown time={time} setTime={setTime} running={running} />,
     );
 
-    const timeElement = getByTestId('stopwatch');
+    const timeElement = getByTestId('countdown');
     expect(timeElement.textContent).toEqual(`Your time:${parseTime(time)}`);
   });
 });

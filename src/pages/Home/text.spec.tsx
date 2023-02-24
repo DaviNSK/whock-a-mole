@@ -28,9 +28,9 @@ describe('HomePage', () => {
 
     userEvent.click(startGameButton);
 
-    const stopWatchTitle = screen.getByText('Your time:');
+    const CountDownTitle = screen.getByText('Your time:');
 
-    expect(stopWatchTitle).toBeInTheDocument();
+    expect(CountDownTitle).toBeInTheDocument();
   });
 
   it('should display score and mole items when game is running', () => {
